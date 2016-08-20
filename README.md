@@ -1,0 +1,2 @@
+# Labnth
+Maze genoration program
