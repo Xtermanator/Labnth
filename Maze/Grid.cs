@@ -206,16 +206,26 @@ namespace Maze
                 float x2 = ((cell.X + 1) * scale);
                 float y2 = ((cell.Y + 1) * scale);
 
-                if (!cell.Linked(cell.East))
-                    for (int j = 0; j <= y2 - y1; j++)
-                        draw(rgbValues, (int)(((y1 + j) * (mWidth * (int)scale + 1)) + x2) * (depth / 8), depth, Color.Black);
-                if (!cell.Linked(cell.South))
-                    for (int j = 0; j <= x2 - x1; j++)
-                        draw(rgbValues, (int)((y2 * (mWidth * (int)scale + 1)) + x1 + j) * (depth / 8), depth, Color.Black);
+                if (cell.Walls != 0)
+                {
+                    if (!cell.Linked(cell.East))
+                        for (int j = 0; j <= y2 - y1; j++)
+                            draw(rgbValues, (int)(((y1 + j) * (mWidth * (int)scale + 1)) + x2) * (depth / 8), depth, Color.Black);
+                    if (!cell.Linked(cell.South))
+                        for (int j = 0; j <= x2 - x1; j++)
+                            draw(rgbValues, (int)((y2 * (mWidth * (int)scale + 1)) + x1 + j) * (depth / 8), depth, Color.Black);
+
+                    if (!cell.Linked(cell.West))
+                        for (int j = 0; j <= y2 - y1; j++)
+                            draw(rgbValues, (int)(((y1 + j) * (mWidth * (int)scale + 1)) + x1) * (depth / 8), depth, Color.Black);
+                    if (!cell.Linked(cell.North))
+                        for (int j = 0; j <= x2 - x1; j++)
+                            draw(rgbValues, (int)((y1 * (mWidth * (int)scale + 1)) + x1 + j) * (depth / 8), depth, Color.Black);
+                }
             }
             System.Runtime.InteropServices.Marshal.Copy(rgbValues, 0, ptr, Math.Abs(bmd.Stride) * bmd.Height);
             bmp.UnlockBits(bmd);
-            bmp.Save("Grid_" + mWidth + "_" + mHeight + ".png");
+            //bmp.Save("Grid_" + mWidth + "_" + mHeight + ".png");
             return bmp;
         }
 
