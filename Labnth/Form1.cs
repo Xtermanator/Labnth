@@ -53,10 +53,10 @@ namespace Labnth
             Maze.Algorithms.RecursiveBacktracker.generate(maze, seed, toolStripProgressBar1.PerformStep);
             updateMap();
 
-            toolStripProgressBar1.Value = 0;
-            toolStripProgressBar1.Maximum = maze.size() / 4;
-            toolStripProgressBar1.Step = 1;
-            Task.Run(() => { Maze.Algorithms.Solver.RemoveDeadEnds(maze, 0, maze.size() / 4, () => { Task.Run(() => updateMap()); step++; }, 10); });
+            //toolStripProgressBar1.Value = 0;
+            //toolStripProgressBar1.Maximum = maze.size() / 4;
+            //toolStripProgressBar1.Step = 1;
+            //Task.Run(() => { Maze.Algorithms.Solver.RemoveDeadEnds(maze, 0, maze.size() / 4, () => { Task.Run(() => updateMap()); step++; }, 10); });
         }
 
         private Grid generate()

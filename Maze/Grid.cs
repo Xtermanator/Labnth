@@ -20,62 +20,31 @@ namespace Maze
         #region Properties
         public int Width
         {
-            get
-            {
-                return mWidth;
-            }
-
-            set
-            {
-                mWidth = value;
-            }
+            get { return mWidth; }
+            set { mWidth = value; }
         }
 
         public int Height
         {
-            get
-            {
-                return mHeight;
-            }
-
-            set
-            {
-                mHeight = value;
-            }
+            get { return mHeight; }
+            set { mHeight = value; }
         }
 
         public Cell[,] Map
         {
-            get
-            {
-                return mMap;
-            }
-
-            set
-            {
-                mMap = value;
-            }
+            get { return mMap; }
+            set { mMap = value; }
         }
 
         public Distances Distances
         {
-            get
-            {
-                return mDistances;
-            }
-
-            set
-            {
-                mDistances = value;
-            }
+            get { return mDistances; }
+            set { mDistances = value; }
         }
 
         public int Seed
         {
-            get
-            {
-                return mSeed;
-            }
+            get { return mSeed; }
         }
 
         #endregion
@@ -246,7 +215,7 @@ namespace Maze
             }
             System.Runtime.InteropServices.Marshal.Copy(rgbValues, 0, ptr, Math.Abs(bmd.Stride) * bmd.Height);
             bmp.UnlockBits(bmd);
-            //bmp.Save("Grid_" + mWidth + "_" + mHeight + ".png");
+            bmp.Save("Grid_" + mWidth + "_" + mHeight + ".png");
             return bmp;
         }
 
