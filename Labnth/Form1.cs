@@ -198,14 +198,14 @@ namespace Labnth
             //map.MakeTransparent(Color.White);
             e.Graphics.DrawImage(map, new RectangleF(offsetX + posX, offsetY + posY, imgWidth, imgHeight));
 
-            drawFade(e.Graphics, Color.Black, (int)(offsetX + posX + (cellSize / 4)), (int)(offsetY + posY), (int)(offsetX + posX + (cellSize / 4)), (int)(offsetY + posY - (cellSize * 10)));
-            drawFade(e.Graphics, Color.Black, (int)(offsetX + posX), (int)(offsetY + posY + (cellSize / 4)), (int)(offsetX + posX - (cellSize * 10)), (int)(offsetY + posY + (cellSize / 4)));
-            drawFade(e.Graphics, Color.Black, (int)(offsetX + posX + imgWidth + (cellSize / 4)), (int)(offsetY + posY), (int)(offsetX + posX + imgWidth + (cellSize / 4)), (int)(offsetY + posY - (cellSize * 10)));
-            drawFade(e.Graphics, Color.Black, (int)(offsetX + posX + imgWidth), (int)(offsetY + posY), (int)(offsetX + posX + imgWidth + (cellSize * 10)), (int)(offsetY + posY));
-            drawFade(e.Graphics, Color.Black, (int)(offsetX + posX), (int)(offsetY + posY + imgHeight), (int)(offsetX + posX), (int)(offsetY + posY + imgHeight + (cellSize * 10)));
-            drawFade(e.Graphics, Color.Black, (int)(offsetX + posX), (int)(offsetY + posY + imgHeight), (int)(offsetX + posX - (cellSize * 10)), (int)(offsetY + posY + imgHeight));
-            drawFade(e.Graphics, Color.Black, (int)(offsetX + posX + imgWidth), (int)(offsetY + posY + imgHeight), (int)(offsetX + posX + imgWidth), (int)(offsetY + posY + imgHeight + (cellSize * 10)));
-            drawFade(e.Graphics, Color.Black, (int)(offsetX + posX + imgWidth), (int)(offsetY + posY + imgHeight), (int)(offsetX + posX + imgWidth + (cellSize * 10)), (int)(offsetY + posY + imgHeight));
+            //drawFade(e.Graphics, Color.Black, (int)(offsetX + posX + (cellSize / 4)), (int)(offsetY + posY), (int)(offsetX + posX + (cellSize / 4)), (int)(offsetY + posY - (cellSize * 10)));
+            //drawFade(e.Graphics, Color.Black, (int)(offsetX + posX), (int)(offsetY + posY + (cellSize / 4)), (int)(offsetX + posX - (cellSize * 10)), (int)(offsetY + posY + (cellSize / 4)));
+            //drawFade(e.Graphics, Color.Black, (int)(offsetX + posX + imgWidth + (cellSize / 4)), (int)(offsetY + posY), (int)(offsetX + posX + imgWidth + (cellSize / 4)), (int)(offsetY + posY - (cellSize * 10)));
+            //drawFade(e.Graphics, Color.Black, (int)(offsetX + posX + imgWidth), (int)(offsetY + posY), (int)(offsetX + posX + imgWidth + (cellSize * 10)), (int)(offsetY + posY));
+            //drawFade(e.Graphics, Color.Black, (int)(offsetX + posX), (int)(offsetY + posY + imgHeight), (int)(offsetX + posX), (int)(offsetY + posY + imgHeight + (cellSize * 10)));
+            //drawFade(e.Graphics, Color.Black, (int)(offsetX + posX), (int)(offsetY + posY + imgHeight), (int)(offsetX + posX - (cellSize * 10)), (int)(offsetY + posY + imgHeight));
+            //drawFade(e.Graphics, Color.Black, (int)(offsetX + posX + imgWidth), (int)(offsetY + posY + imgHeight), (int)(offsetX + posX + imgWidth), (int)(offsetY + posY + imgHeight + (cellSize * 10)));
+            //drawFade(e.Graphics, Color.Black, (int)(offsetX + posX + imgWidth), (int)(offsetY + posY + imgHeight), (int)(offsetX + posX + imgWidth + (cellSize * 10)), (int)(offsetY + posY + imgHeight));
         }
 
         private void graphicsPanel_Resize(object sender, EventArgs e)

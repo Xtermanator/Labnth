@@ -514,7 +514,7 @@
             // 
             this.toolStripTextBox1.MaxLength = 3;
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(30, 25);
+            this.toolStripTextBox1.Size = new System.Drawing.Size(30, 23);
             this.toolStripTextBox1.Text = "0";
             this.toolStripTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyDown);
             this.toolStripTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripTextBox1_KeyPress);

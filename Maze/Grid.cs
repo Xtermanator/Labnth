@@ -16,6 +16,7 @@ namespace Maze
         Distances mDistances;
         int mSeed;
         Random rand;
+        List<Cell> mActive;
 
         #region Properties
         public int Width
@@ -47,6 +48,11 @@ namespace Maze
             get { return mSeed; }
         }
 
+        public List<Cell> Active
+        {
+            get { return mActive; }
+            set { mActive = value; }
+        }
         #endregion
 
         public Grid(int W, int H, int seed)
@@ -57,6 +63,7 @@ namespace Maze
             mDistances = null;
             mSeed = seed;
             rand = new Random(seed);
+            mActive = new List<Cell>();
 
             prepareGrid();
             configureCells();
@@ -64,6 +71,7 @@ namespace Maze
 
         public Grid(string FileName)
         {
+            mActive = new List<Cell>();
             if (File.Exists(FileName))
             {
                 BinaryReader reader = new BinaryReader(File.Open(FileName, FileMode.Open));
@@ -185,7 +193,7 @@ namespace Maze
             return Color.FromArgb(intensity, 255 - intensity, (int)(intensity / 2.0f) + 128);
         }
 
-        public Bitmap paint(float scale = 1.0f)
+        public Bitmap paint(float scale = 1.0f, bool showPath = true)
         {
             Bitmap bmp = new Bitmap(mWidth * (int)scale + 1, mHeight * (int)scale + 1);
             System.Drawing.Imaging.BitmapData bmd = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), System.Drawing.Imaging.ImageLockMode.ReadWrite, bmp.PixelFormat);
@@ -194,11 +202,16 @@ namespace Maze
 
             byte[] rgbValues = new byte[Math.Abs(bmd.Stride) * bmd.Height];
             int depth = Bitmap.GetPixelFormatSize(bmp.PixelFormat);
-            
+
             for (int i = 0; i < mWidth * (int)scale + 1; i++)
                 draw(rgbValues, (int)(0 + i) * (depth / 8), depth, Color.Black);
             for (int i = 0; i < mHeight * (int)scale + 1; i++)
                 draw(rgbValues, (int)((i * (mWidth * (int)scale + 1))) * (depth / 8), depth, Color.Black);
+
+            for (int i = 0; i < mWidth * (int)scale + 1; i++)
+                draw(rgbValues, (int)(((mHeight * (int)scale + 1) * mWidth * (int)scale) + i) * (depth / 8), depth, Color.Black);
+            for (int i = 0; i < mHeight * (int)scale + 1; i++)
+                draw(rgbValues, (int)((i * (mWidth * (int)scale + 1)) + (mWidth * (int)scale + 0)) * (depth / 8), depth, Color.Black);
             foreach (Cell cell in Map)
             {
                 float x1 = (cell.X * scale);
@@ -208,6 +221,12 @@ namespace Maze
 
                 if (cell.Walls != 0)
                 {
+                    if (showPath && mActive.Contains(cell))
+                    {
+                        for (int j = 0; j < scale; j++)
+                            for (int k = 0; k < scale; k++)
+                                draw(rgbValues, (int)(((y1 + j + 1) * (mWidth * (int)scale + 1)) + (x1 + k + 1)) * (depth / 8), depth, Color.Red);
+                    }
                     if (!cell.Linked(cell.East))
                         for (int j = 0; j <= y2 - y1; j++)
                             draw(rgbValues, (int)(((y1 + j) * (mWidth * (int)scale + 1)) + x2) * (depth / 8), depth, Color.Black);

@@ -161,17 +161,21 @@ namespace Maze
                         if (c.Walls == 0)
                             open.Add(c);
                     if (open.Count == 0)
-                        path.Pop();
+                    {
+                        maze.Active.Remove(path.Pop());
+                    }
                     else
                     {
                         Cell next = open[rand.Next(open.Count)];
+                        maze.Active.Add(next);
                         current.Link(next);
                         path.Push(next);
-                    System.Threading.Thread.Sleep(sleep);
+                        //System.Threading.Thread.Sleep(sleep);
                     }
                     if (stepFunc != null)
                         stepFunc();
                 }
+                maze.Active.Clear();
             }
 
             static public void stepGenerate(Grid maze, int x, int y, Random rand = null, Action stepFunc = null)
@@ -197,6 +201,8 @@ namespace Maze
                     for (int x = 0; x < maze.Width; x++)
                     {
                         Cell cell = maze.getCell(x, y);
+                        maze.Active.Clear();
+                        maze.Active.Add(cell);
                         run.Add(cell);
 
                         bool atNorth = (cell.North != null) ? false : true;
@@ -217,6 +223,7 @@ namespace Maze
                         System.Threading.Thread.Sleep(sleep);
                     }
                 }
+                maze.Active.Clear();
             }
 
             //static public void stepGenerate(Grid maze, int x, int y, Random rand = null, Action stepFunc = null)
