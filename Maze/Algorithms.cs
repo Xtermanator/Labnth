@@ -170,7 +170,7 @@ namespace Maze
                         maze.Active.Add(next);
                         current.Link(next);
                         path.Push(next);
-                        //System.Threading.Thread.Sleep(sleep);
+                        System.Threading.Thread.Sleep(sleep);
                     }
                     if (stepFunc != null)
                         stepFunc();
