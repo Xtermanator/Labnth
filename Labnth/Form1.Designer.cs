@@ -65,19 +65,9 @@
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.seedBox = new System.Windows.Forms.ToolStripTextBox();
-            this.randomButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.algorithmCombo = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
-            this.WidthBox = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.HeightBox = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -89,11 +79,29 @@
             this.saveAsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.floodFillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.seedBox = new System.Windows.Forms.TextBox();
+            this.algorithmCombo = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.HeightBox = new System.Windows.Forms.TextBox();
+            this.WidthBox = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.generateButton = new Labnth.NoFocusButton();
+            this.randomize = new Labnth.NoFocusButton();
+            this.openContainer = new Labnth.NoFocusButton();
             this.graphicsPanel = new Labnth.GraphicsPanel();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -345,19 +353,9 @@
             this.openToolStripButton,
             this.saveToolStripButton,
             this.toolStripSeparator6,
-            this.toolStripLabel1,
-            this.seedBox,
-            this.randomButton,
-            this.toolStripSeparator7,
-            this.algorithmCombo,
             this.toolStripSeparator8,
             this.helpToolStripButton,
             this.toolStripSeparator9,
-            this.toolStripLabel4,
-            this.WidthBox,
-            this.toolStripLabel3,
-            this.HeightBox,
-            this.toolStripSeparator10,
             this.toolStripLabel2,
             this.toolStripTextBox1});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
@@ -401,56 +399,6 @@
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(35, 22);
-            this.toolStripLabel1.Text = "Seed:";
-            // 
-            // seedBox
-            // 
-            this.seedBox.Name = "seedBox";
-            this.seedBox.Size = new System.Drawing.Size(100, 25);
-            this.seedBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.seedBox_KeyDown);
-            this.seedBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.seedBox_KeyPress);
-            // 
-            // randomButton
-            // 
-            this.randomButton.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.randomButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.randomButton.Image = ((System.Drawing.Image)(resources.GetObject("randomButton.Image")));
-            this.randomButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.randomButton.Name = "randomButton";
-            this.randomButton.Size = new System.Drawing.Size(56, 22);
-            this.randomButton.Text = "Random";
-            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
-            // 
-            // algorithmCombo
-            // 
-            this.algorithmCombo.CausesValidation = false;
-            this.algorithmCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.algorithmCombo.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.algorithmCombo.Items.AddRange(new object[] {
-            "Aldous-Broder",
-            "Binary Tree",
-            "Eller\'s",
-            "Growing Tree",
-            "Hunt-and-Kill",
-            "Kruskal\'s",
-            "Prim\'s (Simplified)",
-            "Prim\'s (True)",
-            "Recursive Backtracker",
-            "Recursive Division",
-            "Sidewinder",
-            "Wilson\'s"});
-            this.algorithmCombo.Name = "algorithmCombo";
-            this.algorithmCombo.Size = new System.Drawing.Size(121, 25);
-            // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
@@ -471,39 +419,6 @@
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripLabel4
-            // 
-            this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(39, 22);
-            this.toolStripLabel4.Text = "Width";
-            // 
-            // WidthBox
-            // 
-            this.WidthBox.MaxLength = 4;
-            this.WidthBox.Name = "WidthBox";
-            this.WidthBox.Size = new System.Drawing.Size(40, 25);
-            this.WidthBox.Text = "100";
-            this.WidthBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.seedBox_KeyPress);
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(43, 22);
-            this.toolStripLabel3.Text = "Height";
-            // 
-            // HeightBox
-            // 
-            this.HeightBox.MaxLength = 4;
-            this.HeightBox.Name = "HeightBox";
-            this.HeightBox.Size = new System.Drawing.Size(40, 25);
-            this.HeightBox.Text = "100";
-            this.HeightBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.seedBox_KeyPress);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 25);
-            // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
@@ -514,7 +429,7 @@
             // 
             this.toolStripTextBox1.MaxLength = 3;
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(30, 23);
+            this.toolStripTextBox1.Size = new System.Drawing.Size(30, 25);
             this.toolStripTextBox1.Text = "0";
             this.toolStripTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyDown);
             this.toolStripTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripTextBox1_KeyPress);
@@ -582,14 +497,192 @@
             this.floodFillToolStripMenuItem.Text = "Flood Fill";
             this.floodFillToolStripMenuItem.Click += new System.EventHandler(this.floodFillToolStripMenuItem_Click);
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.BackColor = System.Drawing.SystemColors.Control;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 49);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.generateButton);
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.openContainer);
+            this.splitContainer1.Panel2.Controls.Add(this.graphicsPanel);
+            this.splitContainer1.Size = new System.Drawing.Size(688, 402);
+            this.splitContainer1.SplitterDistance = 200;
+            this.splitContainer1.SplitterWidth = 1;
+            this.splitContainer1.TabIndex = 5;
+            this.splitContainer1.Resize += new System.EventHandler(this.graphicsPanel_Resize);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.WidthBox);
+            this.groupBox1.Controls.Add(this.HeightBox);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.algorithmCombo);
+            this.groupBox1.Controls.Add(this.seedBox);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.randomize);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 402);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Settings";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Seed:";
+            // 
+            // seedBox
+            // 
+            this.seedBox.Location = new System.Drawing.Point(53, 44);
+            this.seedBox.MaxLength = 10;
+            this.seedBox.Name = "seedBox";
+            this.seedBox.Size = new System.Drawing.Size(70, 20);
+            this.seedBox.TabIndex = 7;
+            this.seedBox.Text = "1234567891";
+            this.seedBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.seedBox_KeyPress);
+            // 
+            // algorithmCombo
+            // 
+            this.algorithmCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.algorithmCombo.FormattingEnabled = true;
+            this.algorithmCombo.Items.AddRange(new object[] {
+            "Aldous-Broder",
+            "Binary Tree",
+            "Eller\'s",
+            "Growing Tree",
+            "Hunt-and-Kill",
+            "Kruskal\'s",
+            "Prim\'s (Simplified)",
+            "Prim\'s (True)",
+            "Recursive Backtracker",
+            "Recursive Division",
+            "Sidewinder",
+            "Wilson\'s"});
+            this.algorithmCombo.Location = new System.Drawing.Point(13, 19);
+            this.algorithmCombo.Name = "algorithmCombo";
+            this.algorithmCombo.Size = new System.Drawing.Size(167, 21);
+            this.algorithmCombo.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 73);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Width";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(96, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Height";
+            // 
+            // HeightBox
+            // 
+            this.HeightBox.Location = new System.Drawing.Point(140, 70);
+            this.HeightBox.MaxLength = 4;
+            this.HeightBox.Name = "HeightBox";
+            this.HeightBox.Size = new System.Drawing.Size(40, 20);
+            this.HeightBox.TabIndex = 11;
+            this.HeightBox.Text = "100";
+            this.HeightBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.seedBox_KeyPress);
+            // 
+            // WidthBox
+            // 
+            this.WidthBox.Location = new System.Drawing.Point(53, 70);
+            this.WidthBox.MaxLength = 4;
+            this.WidthBox.Name = "WidthBox";
+            this.WidthBox.Size = new System.Drawing.Size(40, 20);
+            this.WidthBox.TabIndex = 12;
+            this.WidthBox.Text = "100";
+            this.WidthBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.seedBox_KeyPress);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(15, 96);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(78, 17);
+            this.checkBox1.TabIndex = 14;
+            this.checkBox1.Text = "Show Path";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // generateButton
+            // 
+            this.generateButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.generateButton.Location = new System.Drawing.Point(0, 379);
+            this.generateButton.MinimumSize = new System.Drawing.Size(1, 1);
+            this.generateButton.Name = "generateButton";
+            this.generateButton.Size = new System.Drawing.Size(200, 23);
+            this.generateButton.TabIndex = 4;
+            this.generateButton.Text = "Generate";
+            this.generateButton.UseVisualStyleBackColor = true;
+            this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
+            // 
+            // randomize
+            // 
+            this.randomize.Location = new System.Drawing.Point(120, 43);
+            this.randomize.MinimumSize = new System.Drawing.Size(1, 1);
+            this.randomize.Name = "randomize";
+            this.randomize.Size = new System.Drawing.Size(60, 22);
+            this.randomize.TabIndex = 5;
+            this.randomize.Text = "Random";
+            this.randomize.UseVisualStyleBackColor = true;
+            this.randomize.Click += new System.EventHandler(this.randomButton_Click);
+            // 
+            // openContainer
+            // 
+            this.openContainer.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.openContainer.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.openContainer.Dock = System.Windows.Forms.DockStyle.Left;
+            this.openContainer.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
+            this.openContainer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.openContainer.Location = new System.Drawing.Point(0, 0);
+            this.openContainer.Margin = new System.Windows.Forms.Padding(0);
+            this.openContainer.MaximumSize = new System.Drawing.Size(10, 0);
+            this.openContainer.MinimumSize = new System.Drawing.Size(1, 1);
+            this.openContainer.Name = "openContainer";
+            this.openContainer.Size = new System.Drawing.Size(10, 1);
+            this.openContainer.TabIndex = 2;
+            this.openContainer.UseVisualStyleBackColor = false;
+            this.openContainer.Click += new System.EventHandler(this.toggleContainer);
+            // 
             // graphicsPanel
             // 
             this.graphicsPanel.ContextMenuStrip = this.contextMenuStrip;
             this.graphicsPanel.Cursor = System.Windows.Forms.Cursors.Cross;
             this.graphicsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphicsPanel.Location = new System.Drawing.Point(0, 49);
+            this.graphicsPanel.Location = new System.Drawing.Point(0, 0);
             this.graphicsPanel.Name = "graphicsPanel";
-            this.graphicsPanel.Size = new System.Drawing.Size(688, 402);
+            this.graphicsPanel.Size = new System.Drawing.Size(487, 402);
             this.graphicsPanel.TabIndex = 4;
             this.graphicsPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel_Paint);
             this.graphicsPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel_MouseClick);
@@ -601,7 +694,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(688, 473);
-            this.Controls.Add(this.graphicsPanel);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
@@ -617,6 +710,12 @@
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.contextMenuStrip.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -659,7 +758,6 @@
         private System.Windows.Forms.ToolStripButton openToolStripButton;
         private System.Windows.Forms.ToolStripButton saveToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
@@ -671,19 +769,23 @@
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem floodFillToolStripMenuItem;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripTextBox seedBox;
-        private System.Windows.Forms.ToolStripButton randomButton;
-        private System.Windows.Forms.ToolStripComboBox algorithmCombo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel4;
-        private System.Windows.Forms.ToolStripTextBox WidthBox;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
-        private System.Windows.Forms.ToolStripTextBox HeightBox;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private NoFocusButton openContainer;
+        private NoFocusButton generateButton;
+        private NoFocusButton randomize;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox seedBox;
+        private System.Windows.Forms.ComboBox algorithmCombo;
+        private System.Windows.Forms.TextBox WidthBox;
+        private System.Windows.Forms.TextBox HeightBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

@@ -58,6 +58,12 @@
     <Compile Include="GraphicsPanel.Designer.cs">
       <DependentUpon>GraphicsPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="NoFocusButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NoFocusButton.Designer.cs">
+      <DependentUpon>NoFocusButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RollingGrid.cs" />

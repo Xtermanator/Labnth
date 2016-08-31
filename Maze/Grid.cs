@@ -204,14 +204,16 @@ namespace Maze
             int depth = Bitmap.GetPixelFormatSize(bmp.PixelFormat);
 
             for (int i = 0; i < mWidth * (int)scale + 1; i++)
+            {
                 draw(rgbValues, (int)(0 + i) * (depth / 8), depth, Color.Black);
-            for (int i = 0; i < mHeight * (int)scale + 1; i++)
-                draw(rgbValues, (int)((i * (mWidth * (int)scale + 1))) * (depth / 8), depth, Color.Black);
+                draw(rgbValues, (int)((bmd.Height - 1) * (int)(bmd.Width) + i) * (depth / 8), depth, Color.Black);
 
-            for (int i = 0; i < mWidth * (int)scale + 1; i++)
-                draw(rgbValues, (int)(((mHeight * (int)scale + 1) * mWidth * (int)scale) + i) * (depth / 8), depth, Color.Black);
+            }
             for (int i = 0; i < mHeight * (int)scale + 1; i++)
-                draw(rgbValues, (int)((i * (mWidth * (int)scale + 1)) + (mWidth * (int)scale + 0)) * (depth / 8), depth, Color.Black);
+            {
+                draw(rgbValues, (int)(i * bmd.Width) * (depth / 8), depth, Color.Black);
+                draw(rgbValues, (int)(i * bmd.Width + (bmd.Width - 1)) * (depth / 8), depth, Color.Black);
+            }
             foreach (Cell cell in Map)
             {
                 float x1 = (cell.X * scale);
@@ -219,7 +221,7 @@ namespace Maze
                 float x2 = ((cell.X + 1) * scale);
                 float y2 = ((cell.Y + 1) * scale);
 
-                if (cell.Walls != 0)
+                if (cell.Links.Length > 0)
                 {
                     if (showPath && mActive.Contains(cell))
                     {

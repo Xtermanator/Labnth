@@ -24,7 +24,7 @@ namespace Labnth
         float cellSize = 32.0f;
         int seed = 0;
         Bitmap  map, distance;
-        bool distanceDone = false, mazeDone = false;
+        bool distanceDone = false, mazeDone = false, showPath = true;
         Task<Bitmap> mapTask = null;
         Task genorator = null, updateIMG = null;
         public Form1()
@@ -145,7 +145,7 @@ namespace Labnth
                 //        g.DrawLine(Pens.LightGray, 0, i, bmp.Width, i);
                 //    return bmp;
                 //});
-                mapTask = Task.Run<Bitmap>(() => { return maze.paint(2); });
+                mapTask = Task.Run<Bitmap>(() => { return maze.paint(2, showPath); });
                 mapTask.Wait();
                 map = mapTask.Result;
                 //t.Wait();
@@ -210,9 +210,12 @@ namespace Labnth
 
         private void graphicsPanel_Resize(object sender, EventArgs e)
         {
-            offsetX = (graphicsPanel.Width / 2) - (maze.Width * (int)cellSize / 2);
-            offsetY = (graphicsPanel.Height / 2) - (maze.Height * (int)cellSize / 2);
-            //graphicsPanel.Invalidate();
+            if (maze != null)
+            {
+                offsetX = (graphicsPanel.Width / 2) - (maze.Width * (int)cellSize / 2);
+                offsetY = (graphicsPanel.Height / 2) - (maze.Height * (int)cellSize / 2);
+                graphicsPanel.Invalidate();
+            }
         }
         #endregion
 
@@ -225,7 +228,7 @@ namespace Labnth
 
         private void Form1_MouseWheel(object sender, MouseEventArgs e)
         {
-            if (cellSize * (e.Delta > 0 ? 2 : 0.5f) > 0.5f || e.Delta > 0)
+            if ((cellSize * (e.Delta > 0 ? 2 : 0.5f) > 0.5f || e.Delta > 0) && cellSize * (e.Delta > 0 ? 2 : 0.5f) < 512.0f)
             {
                 posY /= (cellSize);
                 posX /= (cellSize);
@@ -321,6 +324,26 @@ namespace Labnth
                 default:
                     break;
             }
+        }
+
+        private void toggleContainer(object sender, EventArgs e)
+        {
+            openContainer.Text = openContainer.Text == "<" ? ">" : "<";
+            splitContainer1.Panel1Collapsed = !splitContainer1.Panel1Collapsed;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            showPath = checkBox1.Checked;
+        }
+
+        private void generateButton_Click(object sender, EventArgs e)
+        {
+            graphicsPanel.Select();
+            this.Select();
+            generate();
+            offsetX = (graphicsPanel.Width / 2) - (maze.Width * (int)cellSize / 2);
+            offsetY = (graphicsPanel.Height / 2) - (maze.Height * (int)cellSize / 2);
         }
 
         private void randomButton_Click(object sender, EventArgs e)
