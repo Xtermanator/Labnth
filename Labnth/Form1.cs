@@ -58,7 +58,8 @@ namespace Labnth
             toolStripProgressBar1.Value = 0;
             toolStripProgressBar1.Maximum = maze.size();
             toolStripProgressBar1.Step = 1;
-            Maze.Algorithms.RecursiveBacktracker.generate(maze, seed, toolStripProgressBar1.PerformStep);
+            toolStripProgressBar1.Maximum = maze.size() * 2;
+            genorator = Task.Run(() => { Maze.Algorithms.RecursiveBacktracker.generate(maze, seed, () => step++, sleep); mazeDone = true; });
             InitializeCamera();
             Vertex = InitializeVerticies();
 
@@ -94,8 +95,8 @@ namespace Labnth
         }
         private void InitializeCamera()
         {
-            device.Transform.Projection = Microsoft.DirectX.Matrix.PerspectiveFovLH(3.14f / 4, (float)graphicsPanel.Width / (float)graphicsPanel.Height, 1f, 100000f);
-            device.Transform.View = Microsoft.DirectX.Matrix.LookAtLH(new Vector3((maze.Width * 5) + posX, (maze.Height * 5) + posY, cellSize * 100), new Vector3((maze.Width * 5) + posX, (maze.Height * 5) + posY, 0), new Vector3(0, 1, 0));
+            device.Transform.Projection = Microsoft.DirectX.Matrix.OrthoLH((float)graphicsPanel.Width / cellSize, (float)graphicsPanel.Height / cellSize, 1f, 4000f);
+            device.Transform.View = Microsoft.DirectX.Matrix.LookAtLH(new Vector3((maze.Width * 5) + posX, (maze.Height * 5) + posY, 100), new Vector3((maze.Width * 5) + posX, (maze.Height * 5) + posY, 0), new Vector3(0, 1, 0));
             device.RenderState.Lighting = false;
             device.RenderState.CullMode = Cull.None;
         }
@@ -105,8 +106,12 @@ namespace Labnth
             List<CustomVertex.PositionColored[]> objs = new List<CustomVertex.PositionColored[]>();
 
             float wallWidth = 10.0f;
-
-            addCell(verts, 0, maze.Width * 10 + (wallWidth / 2), 0, maze.Height * 10 + (wallWidth / 2), -1, Color.Pink);
+            addCell(verts, 0, maze.Width * 10 + (wallWidth / 2), 0, maze.Height * 10 + (wallWidth / 2), -1, Color.White);
+            //float asp = (float)graphicsPanel.Width / (float)graphicsPanel.Height;
+            //addCell(verts, ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5),
+            //                ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5) - graphicsPanel.Width,
+            //                ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5),
+            //                ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5) - graphicsPanel.Height, 10, Color.Brown);
             objs.Add(verts.ToArray());
             //addCell(verts, 0, -(wallWidth / 2) + wallWidth, 0, maze.Height * 10 + (wallWidth / 2), 0, Color.Black);
             //addCell(verts, 0, maze.Width * 10 + (wallWidth / 2), 0, -(wallWidth / 2) + wallWidth, 0, Color.Black);
@@ -117,8 +122,12 @@ namespace Labnth
                 float x2 = ((cell.X + 1) * 10);
                 float y2 = ((cell.Y + 1) * 10);
 
+                float left = ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5);
+                float right = ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5) - graphicsPanel.Width;
+                float upper = ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5);
+                float lower = ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5) - graphicsPanel.Height;
 
-                if (cell.Links.Length > 0 && (x1))
+                if (cell.Links.Length > 0 && (x1 < left && x2 > right && y1 < upper && y2 > lower))
                 {
                     verts.Clear();
                     if (selectedX == cell.X && selectedY == cell.Y)
@@ -141,6 +150,14 @@ namespace Labnth
                         objs.Add(verts.ToArray());
                 }
             }
+            if (mazeDone)
+            {
+                verts.Clear();
+                addCell(verts, 0, maze.Width * 10 + (wallWidth / 2), 0, wallWidth / 2, 1, Color.Black);
+                addCell(verts, 0, wallWidth / 2, 0, maze.Height * 10 + (wallWidth / 2), 1, Color.Black);
+                objs.Add(verts.ToArray());
+            }
+            DebugLabel.Text = objs.Count.ToString();
             return objs;
         }
         private void addCell(List<CustomVertex.PositionColored> verts, float x1, float x2, float y1, float y2, float z, Color col)
@@ -257,6 +274,7 @@ namespace Labnth
             else
                 return;
         }
+
         private void timer_Tick(object sender, EventArgs e)
         {
             if (!mazeDone && (updateIMG == null || updateIMG.IsCompleted))
@@ -274,10 +292,11 @@ namespace Labnth
         }
 
         #region Graphics Panel
-
+        protected override void OnPaintBackground(PaintEventArgs e)
+        { }
         private void graphicsPanel_Paint(object sender, PaintEventArgs e)
         {
-            device.Clear(ClearFlags.Target, Color.CornflowerBlue, 0, 1);
+            device.Clear(ClearFlags.Target, Color.Aqua, 0, 1);
             device.BeginScene();
             device.VertexFormat = VertexFormats.Position | VertexFormats.Diffuse;
             

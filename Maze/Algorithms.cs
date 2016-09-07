@@ -171,9 +171,9 @@ namespace Maze
                         current.Link(next);
                         path.Push(next);
                         System.Threading.Thread.Sleep(sleep);
+                        if (stepFunc != null)
+                            stepFunc();
                     }
-                    if (stepFunc != null)
-                        stepFunc();
                 }
                 maze.Active.Clear();
             }

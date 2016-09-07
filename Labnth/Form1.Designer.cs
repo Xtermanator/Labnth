@@ -93,6 +93,7 @@
             this.randomize = new Labnth.NoFocusButton();
             this.openContainer = new Labnth.NoFocusButton();
             this.graphicsPanel = new Labnth.GraphicsPanel();
+            this.DebugLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -437,7 +438,8 @@
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBar1});
+            this.toolStripProgressBar1,
+            this.DebugLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 451);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(688, 22);
@@ -672,6 +674,7 @@
             this.openContainer.Name = "openContainer";
             this.openContainer.Size = new System.Drawing.Size(10, 1);
             this.openContainer.TabIndex = 2;
+            this.openContainer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.openContainer.UseVisualStyleBackColor = false;
             this.openContainer.Click += new System.EventHandler(this.toggleContainer);
             // 
@@ -688,6 +691,12 @@
             this.graphicsPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel_MouseClick);
             this.graphicsPanel.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.graphicsPanel_PreviewKeyDown);
             this.graphicsPanel.Resize += new System.EventHandler(this.graphicsPanel_Resize);
+            // 
+            // DebugLabel
+            // 
+            this.DebugLabel.Name = "DebugLabel";
+            this.DebugLabel.Size = new System.Drawing.Size(42, 17);
+            this.DebugLabel.Text = "Debug";
             // 
             // Form1
             // 
@@ -787,6 +796,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ToolStripStatusLabel DebugLabel;
     }
 }
 
