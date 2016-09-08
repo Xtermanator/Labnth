@@ -58,7 +58,6 @@ namespace Labnth
             toolStripProgressBar1.Value = 0;
             toolStripProgressBar1.Maximum = maze.size();
             toolStripProgressBar1.Step = 1;
-            toolStripProgressBar1.Maximum = maze.size() * 2;
             genorator = Task.Run(() => { Maze.Algorithms.RecursiveBacktracker.generate(maze, seed, () => step++, sleep); mazeDone = true; });
             InitializeCamera();
             Vertex = InitializeVerticies();
@@ -113,6 +112,7 @@ namespace Labnth
             //                ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5),
             //                ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5) - graphicsPanel.Height, 10, Color.Brown);
             objs.Add(verts.ToArray());
+            int count = 0;
             //addCell(verts, 0, -(wallWidth / 2) + wallWidth, 0, maze.Height * 10 + (wallWidth / 2), 0, Color.Black);
             //addCell(verts, 0, maze.Width * 10 + (wallWidth / 2), 0, -(wallWidth / 2) + wallWidth, 0, Color.Black);
             foreach (Cell cell in maze.Map)
@@ -123,31 +123,34 @@ namespace Labnth
                 float y2 = ((cell.Y + 1) * 10);
 
                 float left = ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5);
-                float right = ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5) - graphicsPanel.Width;
+                float right = ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5) - ((float)graphicsPanel.Width / cellSize / 1);
                 float upper = ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5);
-                float lower = ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5) - graphicsPanel.Height;
+                float lower = ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5) - ((float)graphicsPanel.Height / cellSize / 1);
 
                 if (cell.Links.Length > 0 && (x1 < left && x2 > right && y1 < upper && y2 > lower))
                 {
                     verts.Clear();
                     if (selectedX == cell.X && selectedY == cell.Y)
-                        addCell(verts, x1, x2, y1, y2, 0, Color.Green);
+                        addCell(verts, x1, x2, y1, y2, 0, Color.Red);
                     if (showPath && maze.Active.Contains(cell))
                         addCell(verts, x1, x2, y1, y2, 0, Color.Red);
                     if (!cell.Linked(cell.East))
-                        addCell(verts, x2 - (wallWidth / 2) + wallWidth, x2, y1, y2 + (wallWidth / 2), 1, Color.Black);
+                        addCell(verts, x2 - (wallWidth / 2) + wallWidth, x2, y1, y2 + (wallWidth / 2), 10, Color.Black);
                     if (!cell.Linked(cell.South))
-                        addCell(verts, x1, x2 + (wallWidth / 2), y2, y2 - (wallWidth / 2) + wallWidth, 1, Color.Black);
+                        addCell(verts, x1, x2 + (wallWidth / 2), y2, y2 - (wallWidth / 2) + wallWidth, 10, Color.Black);
 
                     if (!mazeDone)
                     {
                         if (!cell.Linked(cell.West))
-                            addCell(verts, x1, x1 - (wallWidth / 2) + wallWidth, y1, y2 + (wallWidth / 2), 1, Color.Black);
+                            addCell(verts, x1, x1 - (wallWidth / 2) + wallWidth, y1, y2 + (wallWidth / 2), 10, Color.Black);
                         if (!cell.Linked(cell.North))
-                            addCell(verts, x1, x2 + (wallWidth / 2), y1, y1 - (wallWidth / 2) + wallWidth, 1, Color.Black);
+                            addCell(verts, x1, x2 + (wallWidth / 2), y1, y1 - (wallWidth / 2) + wallWidth, 10, Color.Black);
                     }
                     if (verts.Count > 0)
+                    {
                         objs.Add(verts.ToArray());
+                        count++;
+                    }
                 }
             }
             if (mazeDone)
@@ -157,7 +160,7 @@ namespace Labnth
                 addCell(verts, 0, wallWidth / 2, 0, maze.Height * 10 + (wallWidth / 2), 1, Color.Black);
                 objs.Add(verts.ToArray());
             }
-            DebugLabel.Text = objs.Count.ToString();
+            DebugLabel.Text = count.ToString();
             return objs;
         }
         private void addCell(List<CustomVertex.PositionColored> verts, float x1, float x2, float y1, float y2, float z, Color col)
@@ -229,7 +232,6 @@ namespace Labnth
                     //Maze.Algorithms.Sidewinder.generate(_M, seed, toolStripProgressBar1.PerformStep);
                     break;
                 case 8:
-                    toolStripProgressBar1.Maximum = maze.size() * 2;
                     genorator = Task.Run(() => { Maze.Algorithms.RecursiveBacktracker.generate(maze, seed, () => step++, sleep); mazeDone = true; });
                     break;
                 case 9:
