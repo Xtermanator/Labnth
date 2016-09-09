@@ -71,6 +71,7 @@ namespace Labnth
             //Task.Run(() => { Maze.Algorithms.Solver.RemoveDeadEnds(maze, 0, maze.size() / 4, () => { Task.Run(() => updateMap()); step++; }, 10); });
         }
 
+        #region DirectX
         private void InitializeDevice()
         {
             try
@@ -106,50 +107,47 @@ namespace Labnth
 
             float wallWidth = 10.0f;
             addCell(verts, 0, maze.Width * 10 + (wallWidth / 2), 0, maze.Height * 10 + (wallWidth / 2), -1, Color.White);
-            //float asp = (float)graphicsPanel.Width / (float)graphicsPanel.Height;
-            //addCell(verts, ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5),
-            //                ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5) - graphicsPanel.Width,
-            //                ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5),
-            //                ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5) - graphicsPanel.Height, 10, Color.Brown);
             objs.Add(verts.ToArray());
             int count = 0;
-            //addCell(verts, 0, -(wallWidth / 2) + wallWidth, 0, maze.Height * 10 + (wallWidth / 2), 0, Color.Black);
-            //addCell(verts, 0, maze.Width * 10 + (wallWidth / 2), 0, -(wallWidth / 2) + wallWidth, 0, Color.Black);
-            foreach (Cell cell in maze.Map)
+            float left = ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5) + 10;
+            float right = ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5) - ((float)graphicsPanel.Width / cellSize / 1) - 10;
+            float upper = ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5) + 10;
+            float lower = ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5) - ((float)graphicsPanel.Height / cellSize / 1) - 10;
+            for (int x = (int)(right / 10) < 0 ? 0 : (int)(right / 10) > maze.Width ? maze.Width : (int)(right / 10); x < (int)(left / 10) && x < maze.Width; x++)
             {
-                float x1 = (cell.X * 10);
-                float y1 = (cell.Y * 10);
-                float x2 = ((cell.X + 1) * 10);
-                float y2 = ((cell.Y + 1) * 10);
-
-                float left = ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5);
-                float right = ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5) - ((float)graphicsPanel.Width / cellSize / 1);
-                float upper = ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5);
-                float lower = ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5) - ((float)graphicsPanel.Height / cellSize / 1);
-
-                if (cell.Links.Length > 0 && (x1 < left && x2 > right && y1 < upper && y2 > lower))
+                for (int y = (int)(lower / 10) < 0 ? 0 : (int)(lower / 10) > maze.Height ? maze.Height : (int)(lower / 10); y < (int)(upper / 10) && y < maze.Height; y++)
                 {
-                    verts.Clear();
-                    if (selectedX == cell.X && selectedY == cell.Y)
-                        addCell(verts, x1, x2, y1, y2, 0, Color.Red);
-                    if (showPath && maze.Active.Contains(cell))
-                        addCell(verts, x1, x2, y1, y2, 0, Color.Red);
-                    if (!cell.Linked(cell.East))
-                        addCell(verts, x2 - (wallWidth / 2) + wallWidth, x2, y1, y2 + (wallWidth / 2), 10, Color.Black);
-                    if (!cell.Linked(cell.South))
-                        addCell(verts, x1, x2 + (wallWidth / 2), y2, y2 - (wallWidth / 2) + wallWidth, 10, Color.Black);
+                    Cell cell = maze.Map[x, y];
+                    float x1 = (cell.X * 10);
+                    float y1 = (cell.Y * 10);
+                    float x2 = ((cell.X + 1) * 10);
+                    float y2 = ((cell.Y + 1) * 10);
 
-                    if (!mazeDone)
+
+                    if (cell.Links.Length > 0 && (x1 < left && x2 > right && y1 < upper && y2 > lower))
                     {
-                        if (!cell.Linked(cell.West))
-                            addCell(verts, x1, x1 - (wallWidth / 2) + wallWidth, y1, y2 + (wallWidth / 2), 10, Color.Black);
-                        if (!cell.Linked(cell.North))
-                            addCell(verts, x1, x2 + (wallWidth / 2), y1, y1 - (wallWidth / 2) + wallWidth, 10, Color.Black);
-                    }
-                    if (verts.Count > 0)
-                    {
-                        objs.Add(verts.ToArray());
-                        count++;
+                        verts.Clear();
+                        if (selectedX == cell.X && selectedY == cell.Y)
+                            addCell(verts, x1, x2, y1, y2, 0, Color.Red);
+                        if (showPath && maze.Active.Contains(cell))
+                            addCell(verts, x1, x2, y1, y2, 0, Color.Red);
+                        if (!cell.Linked(cell.East))
+                            addCell(verts, x2 - (wallWidth / 2) + wallWidth, x2, y1, y2 + (wallWidth / 2), 10, Color.Black);
+                        if (!cell.Linked(cell.South))
+                            addCell(verts, x1, x2 + (wallWidth / 2), y2, y2 - (wallWidth / 2) + wallWidth, 10, Color.Black);
+
+                        if (!mazeDone)
+                        {
+                            if (!cell.Linked(cell.West))
+                                addCell(verts, x1, x1 - (wallWidth / 2) + wallWidth, y1, y2 + (wallWidth / 2), 10, Color.Black);
+                            if (!cell.Linked(cell.North))
+                                addCell(verts, x1, x2 + (wallWidth / 2), y1, y1 - (wallWidth / 2) + wallWidth, 10, Color.Black);
+                        }
+                        if (verts.Count > 0)
+                        {
+                            objs.Add(verts.ToArray());
+                            count++;
+                        }
                     }
                 }
             }
@@ -180,6 +178,7 @@ namespace Labnth
                 if (obj != null)
                     device.DrawUserPrimitives(PrimitiveType.TriangleList, obj.Length / 3, obj);
         }
+        #endregion
 
         private Grid generate()
         {
@@ -232,7 +231,7 @@ namespace Labnth
                     //Maze.Algorithms.Sidewinder.generate(_M, seed, toolStripProgressBar1.PerformStep);
                     break;
                 case 8:
-                    genorator = Task.Run(() => { Maze.Algorithms.RecursiveBacktracker.generate(maze, seed, () => step++, sleep); mazeDone = true; });
+                    genorator = Task.Run(() => { Maze.Algorithms.RecursiveBacktracker.generate(maze, seed, () => step++, sleep, checkBox1.Checked); mazeDone = true; });
                     break;
                 case 9:
                     //Maze.Algorithms.Sidewinder.generate(_M, seed, toolStripProgressBar1.PerformStep);
@@ -253,25 +252,9 @@ namespace Labnth
         {
             if (mapTask == null || mapTask.IsCompleted)
             {
-                //Task<Bitmap> t = Task.Run<Bitmap>(() => 
-                //{
-                //    Bitmap bmp = new Bitmap(maze.Width + 1, maze.Height + 1);
-                //    bmp.MakeTransparent();
-                //    Graphics g = Graphics.FromImage(bmp);
-                //    Pen wall = Pens.Black;
-
-                //    for (int i = 0; i < maze.Width; i++)
-                //        g.DrawLine(Pens.LightGray, i , 0, i , bmp.Height);
-                //    for (int i = 0; i < maze.Height; i++)
-                //        g.DrawLine(Pens.LightGray, 0, i, bmp.Width, i);
-                //    return bmp;
-                //});
                 List<CustomVertex.PositionColored[]> tmp = InitializeVerticies();
-                //mapTask.Wait();
                 Vertex.Clear();
                 Vertex = tmp;
-                //t.Wait();
-                //grid = t.Result;
             }
             else
                 return;
@@ -300,8 +283,6 @@ namespace Labnth
         {
             device.Clear(ClearFlags.Target, Color.Aqua, 0, 1);
             device.BeginScene();
-            device.VertexFormat = VertexFormats.Position | VertexFormats.Diffuse;
-            
             Draw();
             device.EndScene();
             device.Present();
@@ -329,14 +310,9 @@ namespace Labnth
 
         private void Form1_MouseWheel(object sender, MouseEventArgs e)
         {
-            if ((cellSize * (e.Delta > 0 ? 2 : 0.5f) > 0.5f || e.Delta > 0) && cellSize * (e.Delta > 0 ? 2 : 0.5f) < 512.0f)
+            if ((cellSize * (e.Delta > 0 ? 2 : 0.5f) > 0.5f || e.Delta > 0) && cellSize * (e.Delta > 0 ? 2 : 0.5f) < 1024.0f)
             {
-                //posY /= (cellSize);
-                //posX /= (cellSize);
                 cellSize *= e.Delta > 0 ? 2 : 0.5f;
-                //cellSize = (int)cellSize;
-                //posY *= (cellSize);
-                //posX *= (cellSize);
                 offsetX = (graphicsPanel.Width / 2) - (maze.Width * (int)cellSize / 2);
                 offsetY = (graphicsPanel.Height / 2) - (maze.Height * (int)cellSize / 2);
                 InitializeCamera();
@@ -348,8 +324,13 @@ namespace Labnth
             graphicsPanel.Select();
             if (e.Button == MouseButtons.Left)
             {
-                selectedX = (int)((e.X / cellSize) - ((maze.Width * 5) / cellSize) + (posX));
-                selectedY = (int)((e.Y / cellSize) - ((maze.Height * 5) / cellSize) + (posY));
+                float left = ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5) + 10;
+                float right = ((float)graphicsPanel.Width / cellSize / 2) + posX + (maze.Width * 5) - ((float)graphicsPanel.Width / cellSize / 1) - 10;
+                float upper = ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5) + 10;
+                float lower = ((float)graphicsPanel.Height / cellSize / 2) + posY + (maze.Height * 5) - ((float)graphicsPanel.Height / cellSize / 1) - 10;
+                int x = (int)(((e.X) - 0) / (right - 0) * (left - graphicsPanel.Width));
+                selectedX = (int)((e.X / cellSize) + (maze.Width / 2) - ((float)graphicsPanel.Width / cellSize / 2) + (posX));
+                selectedY = (int)((e.Y / cellSize) + (maze.Height / 2) - ((float)graphicsPanel.Height / cellSize / 2) + (posY));
             }
         }
         #endregion
@@ -376,7 +357,16 @@ namespace Labnth
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            map.Save("maze.png");
+            try
+            {
+                map = maze.paint(2);
+                map.Save("maze.png");
+                map.Dispose();
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
             maze.Save("maze.labnth");
         }
 
@@ -388,15 +378,9 @@ namespace Labnth
         private void toolStripTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char keypress = e.KeyChar;
-            if (char.IsDigit(keypress) || e.KeyChar == Convert.ToChar(Keys.Back))
-            {
-
-            }
+            if (char.IsDigit(keypress) || e.KeyChar == Convert.ToChar(Keys.Back)) { }
             else
-            {
-                //MessageBox.Show("You Can Only Enter A Number!");
                 e.Handled = true;
-            }
         }
 
         private void graphicsPanel_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
