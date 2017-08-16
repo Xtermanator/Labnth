@@ -13,8 +13,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
-using Maze;
 using System.Diagnostics;
+using Maze;
 
 namespace Labnth
 {

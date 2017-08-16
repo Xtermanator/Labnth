@@ -72,6 +72,7 @@
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.DebugLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,6 +81,7 @@
             this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.floodFillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.generateButton = new Labnth.NoFocusButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.WidthBox = new System.Windows.Forms.TextBox();
@@ -89,11 +91,9 @@
             this.algorithmCombo = new System.Windows.Forms.ComboBox();
             this.seedBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.generateButton = new Labnth.NoFocusButton();
             this.randomize = new Labnth.NoFocusButton();
             this.openContainer = new Labnth.NoFocusButton();
             this.graphicsPanel = new Labnth.GraphicsPanel();
-            this.DebugLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -451,6 +451,12 @@
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(200, 16);
             // 
+            // DebugLabel
+            // 
+            this.DebugLabel.Name = "DebugLabel";
+            this.DebugLabel.Size = new System.Drawing.Size(42, 17);
+            this.DebugLabel.Text = "Debug";
+            // 
             // timer
             // 
             this.timer.Enabled = true;
@@ -523,6 +529,18 @@
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 5;
             this.splitContainer1.Resize += new System.EventHandler(this.graphicsPanel_Resize);
+            // 
+            // generateButton
+            // 
+            this.generateButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.generateButton.Location = new System.Drawing.Point(0, 379);
+            this.generateButton.MinimumSize = new System.Drawing.Size(1, 1);
+            this.generateButton.Name = "generateButton";
+            this.generateButton.Size = new System.Drawing.Size(200, 23);
+            this.generateButton.TabIndex = 4;
+            this.generateButton.Text = "Generate";
+            this.generateButton.UseVisualStyleBackColor = true;
+            this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
             // 
             // groupBox1
             // 
@@ -637,18 +655,6 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Seed:";
             // 
-            // generateButton
-            // 
-            this.generateButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.generateButton.Location = new System.Drawing.Point(0, 379);
-            this.generateButton.MinimumSize = new System.Drawing.Size(1, 1);
-            this.generateButton.Name = "generateButton";
-            this.generateButton.Size = new System.Drawing.Size(200, 23);
-            this.generateButton.TabIndex = 4;
-            this.generateButton.Text = "Generate";
-            this.generateButton.UseVisualStyleBackColor = true;
-            this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
-            // 
             // randomize
             // 
             this.randomize.Location = new System.Drawing.Point(120, 43);
@@ -672,7 +678,7 @@
             this.openContainer.MaximumSize = new System.Drawing.Size(10, 0);
             this.openContainer.MinimumSize = new System.Drawing.Size(1, 1);
             this.openContainer.Name = "openContainer";
-            this.openContainer.Size = new System.Drawing.Size(10, 1);
+            this.openContainer.Size = new System.Drawing.Size(10, 402);
             this.openContainer.TabIndex = 2;
             this.openContainer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.openContainer.UseVisualStyleBackColor = false;
@@ -691,12 +697,6 @@
             this.graphicsPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel_MouseClick);
             this.graphicsPanel.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.graphicsPanel_PreviewKeyDown);
             this.graphicsPanel.Resize += new System.EventHandler(this.graphicsPanel_Resize);
-            // 
-            // DebugLabel
-            // 
-            this.DebugLabel.Name = "DebugLabel";
-            this.DebugLabel.Size = new System.Drawing.Size(42, 17);
-            this.DebugLabel.Text = "Debug";
             // 
             // Form1
             // 
