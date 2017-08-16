@@ -221,6 +221,10 @@ namespace Maze
                 float x2 = ((cell.X + 1) * scale);
                 float y2 = ((cell.Y + 1) * scale);
 
+                for (int x = 0; x < x2 - x1; x++)
+                    for (int y = 0; y < y2 - y1; y++)
+                        draw(rgbValues, (int)(((y1 + y + 1) * (mWidth * (int)scale + 1)) + (x1 + x + 1)) * (depth / 8), depth, Color.White);
+
                 if (cell.Links.Length > 0)
                 {
                     if (showPath && mActive.Contains(cell))

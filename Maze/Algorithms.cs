@@ -146,7 +146,7 @@ namespace Maze
 
         static public class RecursiveBacktracker
         {
-            static public void generate(Grid maze, int seed = 0, Action stepFunc = null, int sleep = 0)
+            static public void generate(Grid maze, int seed = 0, Action stepFunc = null, int sleep = 0, bool showPath = false)
             {
                 Random rand = new Random(seed);
                 Stack<Cell> path = new Stack<Cell>();
@@ -162,20 +162,24 @@ namespace Maze
                             open.Add(c);
                     if (open.Count == 0)
                     {
-                        maze.Active.Remove(path.Pop());
+                        if (showPath)
+                            maze.Active.Remove(path.Peek());
+                        path.Pop();
                     }
                     else
                     {
                         Cell next = open[rand.Next(open.Count)];
-                        maze.Active.Add(next);
+                        if (showPath)
+                            maze.Active.Add(next);
                         current.Link(next);
                         path.Push(next);
                         System.Threading.Thread.Sleep(sleep);
+                        if (stepFunc != null)
+                            stepFunc();
                     }
-                    if (stepFunc != null)
-                        stepFunc();
                 }
-                maze.Active.Clear();
+                if (showPath)
+                    maze.Active.Clear();
             }
 
             static public void stepGenerate(Grid maze, int x, int y, Random rand = null, Action stepFunc = null)
