@@ -323,6 +323,7 @@ namespace Maze
                         Cell c = path.Pop();
                         if (path.Count != 0)
                             c.Unlink(path.Peek());
+                        maze.Active.Remove(c);
                         i++;
                         if (stepFunc != null)
                             stepFunc();
@@ -331,10 +332,13 @@ namespace Maze
                     else
                     {
                         Cell next = open[rand.Next(open.Count)];
+                        maze.Active.Add(next);
                         path.Push(next);
                         visited.Add(next);
                     }
                 }
+                path.Clear();
+                maze.Active.Clear();
             }
         }
     }
